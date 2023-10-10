@@ -69,9 +69,9 @@
     <PackageReference Include="Microsoft.Extensions.Localization" Version="7.0.5" />
   </ItemGroup>
 
-  <Target Name="ToolRestore">
-    <Exec Command="dotnet tool restore" StandardOutputImportance="high" />
-  </Target>
+    <Target Name="ToolRestore">
+      <Exec Command="dotnet tool restore" StandardOutputImportance="high" />
+    </Target>
 
   <!--combine js files-->
   <Target Name="CombineJS">
@@ -86,9 +86,9 @@
 
   <Target Name="WebCompiler" DependsOnTargets="ToolRestore;CombineJS">
     <!--compile and minify scss-->
-    <Exec Command="dotnet webcompiler ./Styles/MudBlazor.scss -c excubowebcompiler.json" StandardOutputImportance="high" StandardErrorImportance="high" />
+    <Exec Command="webcompiler ./Styles/MudBlazor.scss -c excubowebcompiler.json" StandardOutputImportance="high" StandardErrorImportance="high" />
     <!--minify js-->
-    <Exec Command="dotnet webcompiler ./TScripts/combined/MudBlazor.js -c excubowebcompiler.json" StandardOutputImportance="high" StandardErrorImportance="high" />
+    <Exec Command="webcompiler ./TScripts/combined/MudBlazor.js -c excubowebcompiler.json" StandardOutputImportance="high" StandardErrorImportance="high" />
   </Target>
 
   <Target Name="IncludeGeneratedStaticFiles" DependsOnTargets="WebCompiler" BeforeTargets="BeforeBuild">
@@ -121,7 +121,7 @@
   <ItemGroup>
     <!--For automatic compile on save of the scss use
     cd ./src/MudBlazor
-    dotnet watch webcompiler ./Styles/MudBlazor.scss -c excubowebcompiler.json
+    dotnet watch webcompiler ./Styles/EnterUi.scss -c excubowebcompiler.json
     -->
     <Watch Include="**/*.scss" />
   </ItemGroup>
